@@ -17,7 +17,7 @@ last_save_position = (0, 0)
 
 def define_custom_seconds():
     if verbose:
-        print(f"define_custom_seconds () | {get_now_timestamp()}")
+        print(f'define_custom_seconds () | {get_now_timestamp()}')
 
     global move_mouse_every_seconds, pixels_to_move, execute_press_shift_key, execute_move_mouse
 
@@ -26,13 +26,13 @@ def define_custom_seconds():
                     "It won't do anything if you are using your computer. "
                     "Useful to trick your machine to think you are still working with it.")
 
-    parser.add_argument("-s", "--seconds", type=int,
+    parser.add_argument('-s', '--seconds', type=int,
                         help="Define in seconds how long to wait after a user is considered idle. Default 300.")
 
-    parser.add_argument("-p", "--pixels", type=int,
+    parser.add_argument('-p', '--pixels', type=int,
                         help="Set how many pixels the mouse should move. Default 1.")
 
-    parser.add_argument("-m", "--mode",
+    parser.add_argument('-m', '--mode',
                         help="Available options: keyboard, mouse, both; default is mouse. "
                              "This is the action that will be executed when the user is idle: "
                              "If keyboard is selected, the program will press the shift key. "
@@ -56,13 +56,13 @@ def define_custom_seconds():
         execute_press_shift_key = True
 
         if verbose:
-            print(get_now_timestamp(), "Keyboard is enabled")
+            print(get_now_timestamp(), 'Keyboard is enabled')
 
     if is_mouse_enabled:
         execute_move_mouse = True
 
         if verbose:
-            print(get_now_timestamp(), "Mouse is enabled, moving", pixels_to_move, 'pixels')
+            print(get_now_timestamp(), 'Mouse is enabled, moving', pixels_to_move, 'pixels')
 
     if verbose:
         print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
@@ -70,7 +70,7 @@ def define_custom_seconds():
 
 def move_mouse_when_unable_to_move(expected_mouse_position):
     if verbose:
-        print(f"move_mouse_when_unable_to_move ( expected_mouse_position: {expected_mouse_position} ) | {get_now_timestamp()}")
+        print(f'move_mouse_when_unable_to_move ( expected_mouse_position: {expected_mouse_position} ) | {get_now_timestamp()}')
 
     if expected_mouse_position != mouse.position:
         mouse.position = (0, 0)
@@ -78,7 +78,7 @@ def move_mouse_when_unable_to_move(expected_mouse_position):
 
 def move_mouse():
     if verbose:
-        print(f"move_mouse () | {get_now_timestamp()}")
+        print(f'move_mouse () | {get_now_timestamp()}')
 
     new_x = currentPosition[0] + pixels_to_move
     new_y = currentPosition[1] + pixels_to_move
@@ -98,7 +98,7 @@ def move_mouse():
 
 def press_shift_key():
     if verbose:
-        print(f"press_shift_key () | {get_now_timestamp()}")
+        print(f'press_shift_key () | {get_now_timestamp()}')
 
     keyboard.press(Key.shift)
     keyboard.release(Key.shift)
@@ -106,15 +106,15 @@ def press_shift_key():
 
 def get_now_timestamp():
     # if verbose:
-    #     print("get_now_timestamp ()")
+    #     print('get_now_timestamp ()')
 
     now = datetime.now()
-    return now.strftime("%H:%M:%S")
+    return now.strftime('%H:%M:%S')
 
 
 def execute_keep_awake_action():
     if verbose:
-        print(f"execute_keep_awake_action () | {get_now_timestamp()}")
+        print(f'execute_keep_awake_action () | {get_now_timestamp()}')
 
     if execute_move_mouse:
         move_mouse()
@@ -134,7 +134,7 @@ while True:
         currentPosition = mouse.position
 
     if verbose and not is_user_away:
-        print(f"User activity detected | {get_now_timestamp()}")
+        print(f'User activity detected | {get_now_timestamp()}')
 
     last_save_position = currentPosition
 
